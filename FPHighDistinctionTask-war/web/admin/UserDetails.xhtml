@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../public/MasterTemplate.xhtml">
+            <ui:define name="content">
+                <h:panelGrid styleClass="Panelgroup">
+                    <h3><span class="label label-default">Manage Users > View User</span></h3>
+                </h:panelGrid>
+                <br></br>
+                                <f:view>
+                    <h:form id="detail" styleClass="Panelgroup">
+                        <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <h4>User Details</h4>
+                            </f:facet>
+                            <h:outputLabel value="User ID:"/>
+                            <h:outputText value="#{usersMBean.objUser.idUser}" title="User ID"/>
+                            <h:outputLabel value="First Name:"/>
+                            <h:outputText value="#{usersMBean.objUser.firstName}" title="FirstName"/>
+                            <h:outputLabel value="Last Name:"/>
+                            <h:outputText value="#{usersMBean.objUser.lastName}" title="LastName"/>
+                            <h:outputLabel value="User Type:"/>
+                            <h:outputText value="#{usersMBean.objUser.idUser}" title="UserType"/>
+                            <h:outputLabel value="Account Number:"/>
+                            <h:outputText value="#{usersMBean.objUser.email}" title="Email"/>
+                            <h:outputLabel value="Email:"/>
+                            <h:outputText value="#{usersMBean.objUser.address}" title="Address" />
+                            <h:outputLabel value="Phone Number:"/>
+                            <h:outputText value="#{usersMBean.objUser.phoneNumber}" title="PhoneNumber"/>
+                        </p:panelGrid>
+                        <br></br>
+                        <h:commandButton class="btn btn-primary" value="Back" action="ManageUsers"></h:commandButton>
+                    </h:form>
+                </f:view>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/style.css"/>
+    </h:head>
+    <script src="../resources/js/jquery-3.2.1.min.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <h:body>
+
+        <ui:composition template="./../public/MasterTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:panelGrid styleClass="Panelgroup">
+                    <h3><span class="label label-default">General Settings > Manage Users</span></h3>
+                </h:panelGrid>
+                <br></br>
+                <h:form id="SearchUsers">
+                    <p:messages autoUpdate="true" showDetail="true" showSummary="false" />
+                    <h:panelGrid columns="3" styleClass="Panelgroup">
+                        <h:outputLabel for="UserID" value="User ID:" title="User ID"/>
+                        <h:inputText class="form-control" id="UserID" value="#{usersMBean.userID}" />
+                        <h:column />
+
+                        <h:outputLabel for="firtName" value="First Name:" title="First Name"/>
+                        <h:inputText class="form-control" id="firtName" value="#{usersMBean.firstName}" />
+                        <h:column />
+
+                        <h:outputLabel for="lastName" value="Last Name:" title="Last Name"/>
+                        <h:inputText class="form-control" id="lastName" value="#{usersMBean.lastName}" />
+                        <h:column />
+
+                        <h:outputLabel for="email" value="Email:" title="Email"/>
+                        <h:inputText class="form-control" id="email" value="#{usersMBean.email}" />
+                        <h:column />
+
+                        <h:outputLabel value="User Type: " for="userType" />
+                        <h:selectOneMenu id="userType" class="form-control" value="#{usersMBean.userType}">
+                            <f:selectItem itemLabel="Select.." itemValue="" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Customer" itemValue="customer" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Bank Worker" itemValue="administrator" noSelectionOption="true" />
+                        </h:selectOneMenu>
+                        <h:column />
+
+                        <p:commandButton ajax="false" class="btn btn-primary" value="Filter" action="#{usersMBean.searchByCriteria()}" update="SearchGrid"></p:commandButton>
+                    </h:panelGrid>
+                    <br></br>
+                    <h:panelGrid styleClass="Panelgroup">
+                        <h:dataTable id="SearchGrid" class="table table-bordered" var="U" value="#{usersMBean.listUsers}">
+                            <h:column>
+                                <f:facet name="header">Id User</f:facet>
+                                <h:outputText value="#{U.idUser}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">First Name</f:facet>
+                                <h:outputText value="#{U.firstName}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Last Name</f:facet>
+                                <h:outputText value="#{U.lastName}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Email Address</f:facet>
+                                <h:outputText value="#{U.email}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Actions</f:facet>
+                                <h:commandLink value="Edit" action="#{usersMBean.EditUser(U)}"></h:commandLink>
+                                |
+                                <h:commandLink value="Delete" action="#{usersMBean.DeleteUserFromDB(U)}" onclick="return confirm('Are you sure?. This action will also delete accounts and transactions.')"></h:commandLink>
+                                |
+                                <h:commandLink value="View" action="#{usersMBean.ViewDetailUsers(U)}"></h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                        <h:link value="Add New User" outcome="AddUsers"></h:link>
+                    </h:panelGrid>          
+                </h:form>             
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/style.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../public/MasterTemplate.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h:panelGrid columns="3" styleClass="Panelgroup">
+                            <h:outputLabel value="Type No: " for="TypeId" />
+                            <h:inputText disabled="true" id="TypeId" class="form-control" value="#{transTypesMBean.objTransType.trtypeId}" title="IdUser"/>
+                            <h:inputHidden value="#{transTypesMBean.objTransType.trtypeId}"/>
+
+                            <h:outputLabel value="Transaction Type Name: " for="TransTypeName" />
+                            <h:inputText id="TransTypeName" class="form-control" value="#{transTypesMBean.objTransType.typeName}" title="FirstName" required="true" requiredMessage="First Name is required." />
+                            <h:message for="TransTypeName" id="typeNameError" style="color: red"/>
+
+                            <h:outputLabel value="User Type: " for="userType" />
+                            <h:selectOneMenu id="userType" class="form-control" value="#{transTypesMBean.objTransType.movementTypeId}">
+                                <f:selectItem itemLabel="Credit" itemValue="C" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Debit" itemValue="D" noSelectionOption="true" />
+                            </h:selectOneMenu>   
+                            <h:column/>
+
+                            <h:commandButton class="btn btn-primary" value="Save" action="#{transTypesMBean.editTransType}"></h:commandButton>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/style.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../public/MasterPage.xhtml">
+            <ui:define name="content">
+                <h:panelGrid style="margin-left: 10px" styleClass="Panelgroup">
+                    <h3><span class="label label-default">Transactions > Search > Detail</span></h3>
+                </h:panelGrid>
+                <br></br>
+                <f:view>
+                    <h:form id="detail" styleClass="Panelgroup">
+                        <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <h4>Transaction Details</h4>
+                            </f:facet>
+                            <h:outputLabel value="Transaction Id:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.transactionId}" title="TransactionId"/>
+                            <h:outputLabel value="Transaction Name:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.transactionName}" title="TransactionName"/>
+                            <h:outputLabel value="Transaction Type:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.trtypeId.typeName}" title="TrtypeId"/>
+                            <h:outputLabel value="Description:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.description}" title="Description"/>
+                            <h:outputLabel value="Account Number:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.accountNumber.accountNumber}" title="AccountNumber"/>
+                            <h:outputLabel value="Transaccion Ammount:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.amount}" title="Amount">
+                                <f:convertNumber currencySymbol="A$ " type="currency"/>
+                            </h:outputText>
+                            <h:outputLabel value="Location:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.location}" title="Location"/>
+                            <h:outputLabel value="Datetime:"/>
+                            <h:outputText value="#{transactionMbean.objTrans.datetimeTrans}" title="Datetime">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputLabel value="User:"/>
+                            <h:column>
+                                <h:outputText value="#{transactionMbean.objTrans.idUser.firstName}, " title="UserId"/>
+
+                                <h:outputText value="#{transactionMbean.objTrans.idUser.lastName}" title="UserId"/>
+                            </h:column>
+                        </p:panelGrid>
+                        <br></br>
+                        <p:commandButton class="btn btn-primary" value="Back" action="SearchTransactions"></p:commandButton>
+                    </h:form>
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

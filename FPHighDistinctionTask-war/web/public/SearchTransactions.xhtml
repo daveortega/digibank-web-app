@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/style.css"/>
+    </h:head>
+    <script src="../resources/js/jquery-3.2.1.min.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <h:body>
+
+        <ui:composition template="MasterTemplate.xhtml">
+            <ui:define name="content">
+                <h:panelGrid styleClass="Panelgroup">
+                    <h3><span class="label label-default">Transactions > Search</span></h3>
+                </h:panelGrid>
+                <br></br>
+                <h:form id="search">
+                    <h:panelGrid columns="3" styleClass="Panelgroup">
+                        <h:outputLabel for="TransNo" value="Transaction No:" title="Transaction No"/>
+                        <h:inputText class="form-control" id="TransNo" value="#{transactionMbean.transNo}">
+                            <f:validator validatorId="TransIDValidator"/>
+                        </h:inputText>
+                        <h:message id="ErrorTransID" for="TransNo" style="color:red"/>
+
+                        <h:outputLabel for="TransName" value="Transaction Name:" title="Transaction Name"/>
+                        <h:inputText class="form-control" id="TransName" value="#{transactionMbean.transName}">
+                        </h:inputText>
+                        <h1></h1>
+
+                        <h:outputLabel for="TransType" value="Transaction Type:" title="Transaction Type"/>
+                        <h:selectOneMenu id="TransType" class="form-control" value="#{transactionMbean.transType}">
+                            <f:selectItem itemLabel="Select.." itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{transactionMbean.listTransactionsTypes}" var="type" itemValue="#{type.trtypeId}" itemLabel="#{type.typeName}" />
+                        </h:selectOneMenu>                 
+                        <h1></h1>
+                        <p:commandButton ajax="false" class="btn btn-primary" value="Filter" action="#{transactionMbean.SearchByCriteria()}" update="SearchGrid"></p:commandButton>
+                    </h:panelGrid>
+                    <br></br>
+                    <h:panelGrid styleClass="Panelgroup">
+                        <h:dataTable id="SearchGrid" class="table table-bordered" var="T" value="#{transactionMbean.listTransactions}">
+                            <h:column>
+                                <f:facet name="header">Transaction No</f:facet>
+                                <h:outputText value="#{T.transactionId}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Transaction Name</f:facet>
+                                <h:outputText value="#{T.transactionName}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Transaction Type</f:facet>
+                                <h:outputText value="#{T.trtypeId.typeName}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Transaction User</f:facet>
+                                <h:outputText value="#{T.idUser.firstName}"> </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Actions</f:facet>
+                                <h:commandLink value="more details.." action="#{transactionMbean.ViewDetailTransaction(T)}"></h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

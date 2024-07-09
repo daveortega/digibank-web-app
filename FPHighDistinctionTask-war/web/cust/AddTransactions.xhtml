@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="../resources/css/style.css"/>
+    </h:head>
+    <script src="../resources/js/jquery-3.2.1.min.js"></script>
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <h:body>
+        <ui:composition template="./../public/MasterTemplate.xhtml">
+            <ui:define name="content">
+                <h:panelGrid styleClass="Panelgroup">
+                    <h3><span class="label label-default">Transactions > Add</span></h3>
+                </h:panelGrid>
+                <br></br>
+                <h:form>
+                    <p:messages autoUpdate="true" showDetail="true" showSummary="false" />
+                    <h:panelGrid columns="3" styleClass="Panelgroup">                          
+                        <h:outputLabel value="Transaction Name:" for="transactionName" />
+                        <h:inputText id="transactionName" class="form-control" value="#{transactionMbean.objTrans.transactionName}" title="TransactionName" required="true" requiredMessage="Transaction Name is required."/>
+                        <h:message for="transactionName" id="ErrorIdTransName" style="color: red"/>
+
+                        <h:outputLabel value="Description:" for="description" />
+                        <h:inputText id="description" class="form-control" value="#{transactionMbean.objTrans.description}" title="Description" required="true" requiredMessage=" Description is required."/>
+                        <h:message for="description" id="ErrorIdTransDescr" style="color: red"/>
+
+                        <h:outputLabel value="Location:" for="location" />
+                        <h:inputText id="location" class="form-control" value="#{transactionMbean.objTrans.location}" title="Location" required="true" requiredMessage=" Location is required."/>
+                        <h:message for="location" id="Errorlocation" style="color: red"/>
+
+                        <h:outputLabel value="Amount:" for="amount" />
+                        <h:inputText id="amount" class="form-control" value="#{transactionMbean.objTrans.amount}" title="Amount" required="true" requiredMessage="Amount is required." validator="NumberDecimalIDValidator">
+                            <f:ajax event="keyup" execute="@this" render="Erroramount"/> 
+                        </h:inputText>
+                        <h:message for="amount" id="Erroramount" style="color: red"/>
+
+                        <h:outputLabel value="Account Number:" for="accountNumber" />
+                        <h:selectOneMenu id="accountNumber" class="form-control"  value="#{transactionMbean.objAddAcctNo.accountNumber}" title="AccountNumber" required="true" requiredMessage="The AccountNumber field is required.">
+                            <f:selectItem itemLabel="Select.." itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{userLogMBean.logUserAccounts}" var="AcctNums" itemValue="#{AcctNums.accountNumber}" itemLabel="#{AcctNums.acctName}" />
+                        </h:selectOneMenu>
+                        <h:message for="accountNumber" id="ErroraccountNumber" style="color: red"/>
+
+                        <h:outputLabel value="Transaction Type:" for="trtypeId" />
+                        <h:selectOneMenu id="trtypeId" class="form-control" value="#{transactionMbean.objAddTransType.trtypeId}" title="TrtypeId" >
+                            <f:selectItem itemLabel="Select.." itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{transactionMbean.listWandCTypes}" var="type" itemValue="#{type.trtypeId}" itemLabel="#{type.typeName}" />
+                        </h:selectOneMenu>
+                        <h:message for="trtypeId" id="ErrortrtypeId" style="color: red"/>
+
+                        <h:commandButton class="btn btn-primary" value="Save" action="#{transactionMbean.addTransaction}"></h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

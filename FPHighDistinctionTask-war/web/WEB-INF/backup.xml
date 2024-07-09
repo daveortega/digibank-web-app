@@ -1,0 +1,8 @@
+    <security-role>
+        <description>Admin Application</description>
+        <role-name>administrator</role-name>
+    </security-role>
+    <security-role>
+        <description>Member of public</description>
+        <role-name>customer</role-name>
+    </security-role>

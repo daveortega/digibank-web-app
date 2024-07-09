@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/09/2017, 1:16:50 AM
+    Author     : Juan David
+*/
+
+.navbar-brand.logo{
+    font-family: sans-serif; 
+    font-size: 28px; 
+    font-weight: bold; 
+    color: orange;
+}
+
+.navbar-nav.center{
+    font-family: sans-serif; 
+    font-size: 18px;
+}
+
+.navbar-nav.right{
+    font-size: 18px;
+}
+
+.Panelgroup{
+    margin-left: 10px;
+}
+
+.PanelgroupResults{
+    margin-left: 50px;
+}
+
+.BackButton{
+    margin-left: 50px;
+}
+
+input.hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+#profile-image1 {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border:2px solid #03b1ce;
+}
+
+.tital{ 
+    font-size:16px; font-weight:500;
+}
+
+.bot-border{ 
+    border-bottom:1px #f8f8f8 solid;
+    margin:5px 0  5px 0;
+}
+
+.user-title{
+    color: #337AB7;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user-subtitle{
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
