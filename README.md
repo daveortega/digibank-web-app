@@ -71,7 +71,7 @@ This Java EE application allows users to create and manage transactions. The app
      - **Name:** jdbcRealm
      - **Classname:** com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm
      - **JAAS Context:** jdbcRealm
-     - **JNDI:** jdbc/TransactionDB
+     - **JNDI:** jdbc/FPHighDistinctionTaskWeb2
      - **User Table:** USERS
      - **User Name Column:** USERNAME
      - **Password Column:** PASSWORD
@@ -122,10 +122,6 @@ This Java EE application allows users to create and manage transactions. The app
 
 3. **Manage Transactions:**
    - Use the application interface to create, view, update, and delete transactions.
-
-4. **Application Walkthrough:**
-
-     ![app journey](./project-artifacts/screen-recording.mov)
 
 ## Contributing
 
